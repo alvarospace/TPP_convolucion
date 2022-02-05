@@ -107,6 +107,21 @@ int main( int argc, char *argv[] ){
 
     printf("\n******* Matriz B ********\n");
     imprimirMat(mB, nB, B);
+    FILE *temp=fopen("temp.txt","w");
+    if(temp == NULL)
+    {
+      printf("Error!");   
+      exit(1);             
+    }
+    for(int i=0; i<nB; i++){
+        for(int j=0; j<mB; j++){
+            double val = B[i*nB + j];
+            fprintf(temp,"%f", val);
+            fprintf(temp,"%s", " ");
+        }
+        fprintf(temp,"\n");
+    }
+    fclose(temp);
 
 
     // // Calculo del error acumulado
