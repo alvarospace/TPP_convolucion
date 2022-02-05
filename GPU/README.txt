@@ -1,0 +1,1 @@
+En knights compilar así: nvcc GPU_parallel_gen.cu -o conv_para -arch sm_35
