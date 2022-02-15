@@ -75,11 +75,11 @@ int main( int argc, char *argv[] ){
         }
     }
 
-    printf("\n******* Matriz A ********\n");
-    imprimirMat(mA, nA, A);
+    // printf("\n******* Matriz A ********\n");
+    // imprimirMat(mA, nA, A);
 
-    printf("\n******* Matriz F ********\n");
-    imprimirMat(mF, nF, F);
+    // printf("\n******* Matriz F ********\n");
+    // imprimirMat(mF, nF, F);
 
 
     /* Reserva de memoria de B, en función de si el padding está activado */
@@ -105,8 +105,8 @@ int main( int argc, char *argv[] ){
 
     /* ************************************ */
 
-    printf("\n******* Matriz B ********\n");
-    imprimirMat(mB, nB, B);
+    // printf("\n******* Matriz B ********\n");
+    // imprimirMat(mB, nB, B);
     FILE *temp=fopen("temp.txt","w");
     if(temp == NULL)
     {
@@ -194,10 +194,10 @@ void convolucion(const double *A, int mA, int nA, const double *F, int mF, int n
 
     cudaEventCreate(&start);
     cudaEventCreate(&stop);
-
+    cudaEventRecord(start);
     compute_kernel<<< dimGrid, dimBlock >>>( mB, nB, mF, nF, nA, d_A, d_F, d_B );
 
-    cudaEventRecord(stop,0);
+    cudaEventRecord(stop);
     cudaEventSynchronize(stop);
 
     cudaEventElapsedTime(&elapsedTime, start,stop);
