@@ -45,7 +45,7 @@ int main( int argc, char *argv[] ){
     double *A, *F;
     A = (double *) calloc(sizeA, sizeof(double)); //A se llena de ceros
     F = (double *) malloc(sizeof(double) * sizeF);
-    drand48(); //El primer valor da 0 xdd ??
+    //drand48(); //El primer valor da 0 xdd ??
     /* Generación de las matrices A y F */
     for (int i=marco; i < mA-marco; i++){
         for (int j=marco; j < nA-marco; j++){

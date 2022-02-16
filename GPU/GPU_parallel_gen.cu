@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <assert.h>
 
 #define CUDA_SAFE_CALL( call ) {                                         \
  cudaError_t err = call;                                                 \
@@ -53,6 +54,17 @@ int main( int argc, char *argv[] ){
     mF = atoi(argv[3]);
     nF = atoi(argv[4]);
 
+    //Calcular tamaño del marco (si padding esta activado)
+    unsigned int marco = 0;
+    if (padding) {
+        assert(mF == nF); //No funciona con un filtro no cuadrado
+        assert(mF % 2 != 0); //No funciona con números pares
+        
+        marco = (mF-1) / 2;
+        mA += marco * 2;
+        nA += marco * 2;
+    }
+
     unsigned int sizeA,sizeF;
     sizeA = mA * nA;
     sizeF = mF * nF;
@@ -63,8 +75,9 @@ int main( int argc, char *argv[] ){
     F = (double *) malloc(sizeof(double) * sizeF);
 
     /* Generación de las matrices A y F */
-    for (int i=0; i < mA; i++){
-        for (int j=0; j < nA; j++){
+    //drand48(); //El primer valor da 0 xdd ??
+    for (int i=marco; i < mA-marco; i++){
+        for (int j=marco; j < nA-marco; j++){
             A[i*nA + j] = drand48();
         }
     }
@@ -86,15 +99,9 @@ int main( int argc, char *argv[] ){
     double *B;
     int mB, nB, sizeB;
 
-    if ( padding ) {
-        mB = mA;
-        nB = nA;
-        sizeB = sizeA;
-    } else {
-        mB = mA - mF + 1;
-        nB = nA - nF + 1;
-        sizeB = mB * nB;
-    }
+    mB = mA - mF + 1;
+    nB = nA - nF + 1;
+    sizeB = mB * nB;
 
     B = (double *) malloc(sizeof(double) * sizeB);
 
