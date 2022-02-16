@@ -7,7 +7,7 @@ disp(A);
 writematrix(A);
 
 % Filtro
-F = rand(3);
+F = rand(5);
 fprintf('\nFiltro:\n');
 disp(F);
 writematrix(F);
@@ -17,6 +17,11 @@ B = conv2(A,flipud(fliplr(F)),"valid");
 fprintf('\nMatriz resultado, B, sin padding:\n');
 disp(B);
 writematrix(B);
+
+Bp = conv2(A,flipud(fliplr(F)),"same");
+fprintf('\nMatriz resultado, B, con padding:\n');
+disp(Bp);
+writematrix(Bp);
 
 
 
