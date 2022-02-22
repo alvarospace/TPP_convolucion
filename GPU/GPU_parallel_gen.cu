@@ -19,7 +19,6 @@ __global__ void compute_kernel( unsigned int mB, unsigned int nB,unsigned int mF
   int i = blockIdx.x * blockDim.x + threadIdx.x; // Global row index
   int j = blockIdx.y * blockDim.y + threadIdx.y; // Global column index
 
-  /* Perform the addition. Pay attention because probably not all the threads should perform the addition */ 
   if( i<mB && j<nB ) {
     // Reseteamos el valor acumulado
     double sum = 0.0;
