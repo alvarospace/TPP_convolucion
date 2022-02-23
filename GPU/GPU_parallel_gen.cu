@@ -210,9 +210,9 @@ void convolucion(const double *A, int mA, int nA, const double *F, int mF, int n
     cudaEventElapsedTime(&elapsedTime, start,stop);
     printf("Time = %f ms\n",elapsedTime);
 
-    printf("Coping DEVICE to HOST\n");
+    // printf("Coping DEVICE to HOST\n");
 
-    CUDA_SAFE_CALL( cudaMemcpy( B, d_B, mem_size_B, cudaMemcpyDeviceToHost ) );
+    // CUDA_SAFE_CALL( cudaMemcpy( B, d_B, mem_size_B, cudaMemcpyDeviceToHost ) );
 
     // Deallocate device memory
     CUDA_SAFE_CALL( cudaFree(d_A) );
