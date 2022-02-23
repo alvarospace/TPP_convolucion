@@ -110,9 +110,9 @@ int main( int argc, char *argv[] ){
     double elapsed, ucpu, scpu;
     ctimer(&elapsed, &ucpu, &scpu);
     for (int ind=0; ind < numImg; ind++){
-        convolucion(batch[ind].R, mA, nA, F, mF, nF, batch[ind].R);
-        convolucion(batch[ind].G, mA, nA, F, mF, nF, batch[ind].G);
-        convolucion(batch[ind].B, mA, nA, F, mF, nF, batch[ind].B);
+        convolucion(batch[ind].R, mA, nA, F, mF, nF, batch_out[ind].R);
+        convolucion(batch[ind].G, mA, nA, F, mF, nF, batch_out[ind].G);
+        convolucion(batch[ind].B, mA, nA, F, mF, nF, batch_out[ind].B);
     }    
     ctimer(&elapsed, &ucpu, &scpu);
 
